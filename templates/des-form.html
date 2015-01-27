@@ -1,0 +1,35 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> DES Practice</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/offcanvas.css' %}" rel="stylesheet">
+</head>
+<body>
+<form id="des-form" action="{% url 'des-process' %}" method="POST" >
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="des-data">Introduce la palabra a cifrar.</label>
+              <input type="text" class="form-control" name="des-data" id="des-data" placeholder="Diamante">
+            </div>
+            <div class="form-group">
+              <label for="des-key">Introduce la llave.</label>
+              <input type="text" class="form-control" name="des-key" placeholder="Asegurar">
+            </div>
+            {% if res.data %}
+            <div class="well well-sm" data-result="{{ res.data }}%}">
+              <p>IP: {{ res.ip }}</p>
+              <p>Expantion: {{ res.exp }}</p>
+              <p>PC1: {{ res.pc1 }}</p> 
+            </div>
+            {% endif %}
+</form>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="{% static 'js/des.js' %}"></script>
+</body>
+</html>
