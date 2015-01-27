@@ -1,0 +1,36 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<head>
+  <title> DES Practice</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/offcanvas.css' %}" rel="stylesheet">
+</head>
+<body>
+<html lang="en">
+<form id="opmodes-form" method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+	<button class="file_cvr"  data-input="#original_img">Seleccionar imagen original</button>
+	<span class="img-sd">No se ha selecc... </span>
+	<input type="file" name="original_img" id="original_img" class="file_input" />
+	<input type="hidden" name="decryption_mode" value="ecb" />
+	<p class="response_status"></p> 
+	<!--
+	<div class="form-group">
+    <label for="exampleInputFile">Seleccionar imagen original</label>
+    <input type="file" name="original_img" id="original_img" class="file_cvr">
+    <p class="help-block">Selecciona la imagen con la que deseas interactuar.</p> -->
+  </div>
+		<button class="btn btn-success opmodes-sub" data-type="encrypt" data-action="{% url 'opmodes-encrypt' %}"><span class="loader"></span><span class="txt">Encrypt</span></button>
+		<button class="btn btn-primary opmodes-sub" data-type="decrypt" data-action="{% url 'opmodes-decrypt' %}"><span class="loader"></span><span class="txt">Decrypt</span></button>
+</form>
+	<iframe id="download_iframe" style="display:none;"></iframe>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/forms.js' %}"></script>
+    <script src="{% static 'js/spin.min.js' %}"></script>
+</body>
+</html>
