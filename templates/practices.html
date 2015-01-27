@@ -96,29 +96,13 @@
         <h4 class="modal-title" id="myModalLabel">DES</h4>
       </div>
       <div class="modal-body">
-        <form id="des-form" action="{% url 'des-process' %}" method="POST" >
-          {% csrf_token %}
-          <div class="form-group">
-            <label for="des-data">Introduce la palabra a cifrar.</label>
-            <input type="text" class="form-control" name="des-data" placeholder="Diamante">
-          </div>
-          <div class="form-group">
-            <label for="des-key">Introduce la llave.</label>
-            <input type="text" class="form-control" name="des-key" placeholder="Asegurar">
-          </div>
-          {% if res.data %}
-          <div class="well well-sm" data-result="{{ res.data }}%}">
-            <p>IP: {{ res.ip }}</p>
-            <p>Expantion: {{ res.exp }}</p>
-            <p>PC1: {{ res.pc1 }}</p> 
-          </div>
-          {% endif %}
+        <iframe src="{% url 'des-process' %}" frameborder="0" style="width: 100%">
+        </iframe>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Send Data</button>
+        <button type="button" class="btn btn-primary" id="des-submit">Send Data</button>
       </div>
-        </form>
     </div>
   </div>
 </div>
@@ -129,5 +113,6 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
     <script src="{% static 'js/offcanvas.js' %}"></script>
+    <script src="{% static 'js/des.js' %}"></script>
   </body>
 </html>

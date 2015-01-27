@@ -17,7 +17,7 @@ def practices(request):
 class Process(View):
 
 	def get(self, request):
-		return render_to_response('practices.html', locals(), RequestContext(request))
+		return render_to_response('des-form.html', locals(), RequestContext(request))
 
 	def post(self, request):
 
@@ -38,6 +38,7 @@ class Process(View):
 		pc1 = des.pc1(key)
 		ip = des.ipermutation(data)
 		R = ip[32:]
+		print "R : ", R
 		exp = des.expand(R)
 
 		result['error'] = False
@@ -45,4 +46,4 @@ class Process(View):
 		result['expantion'] = exp
 		result['pc1'] = pc1
 
-		return HttpResponse({json.dumps(result)}, content_type='application/json')
+		return render_to_response("des-form.html",{json.dumps(result)}, content_type='application/json')
