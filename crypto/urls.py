@@ -12,4 +12,5 @@ urlpatterns = patterns('',
     url(r'^practices/', dviews.practices, name='practices'),
 
     url(r'^des-process/', dviews.Process.as_view(), name="des-process")
+    url(r'^hill-process/', hviews.Process.as_view(), name="hill-process")
 )
