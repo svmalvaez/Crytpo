@@ -13,16 +13,16 @@
 <html lang="en">
 <form id="opmodes-form" method="POST" enctype="multipart/form-data">
 	{% csrf_token %}
-	<button class="file_cvr"  data-input="#original_img">Seleccionar imagen original</button>
+	<!-- <button class="file_cvr"  data-input="#original_img">Seleccionar imagen original</button>
 	<span class="img-sd">No se ha selecc... </span>
 	<input type="file" name="original_img" id="original_img" class="file_input" />
+	<p class="response_status"></p> -->
+	
 	<input type="hidden" name="decryption_mode" value="ecb" />
-	<p class="response_status"></p> 
-	<!--
 	<div class="form-group">
     <label for="exampleInputFile">Seleccionar imagen original</label>
-    <input type="file" name="original_img" id="original_img" class="file_cvr">
-    <p class="help-block">Selecciona la imagen con la que deseas interactuar.</p> -->
+    <input type="file" name="original_img" id="original_img" class="file_inout">
+    <p class="help-block response_status">Selecciona la imagen con la que deseas interactuar.</p> 
   </div>
 		<button class="btn btn-success opmodes-sub" data-type="encrypt" data-action="{% url 'opmodes-encrypt' %}"><span class="loader"></span><span class="txt">Encrypt</span></button>
 		<button class="btn btn-primary opmodes-sub" data-type="decrypt" data-action="{% url 'opmodes-decrypt' %}"><span class="loader"></span><span class="txt">Decrypt</span></button>

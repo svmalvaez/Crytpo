@@ -57,5 +57,4 @@ def create_zip(paths, filename, ext):
         os.remove(path)
 
     _zip.close()
-
     return zip_path

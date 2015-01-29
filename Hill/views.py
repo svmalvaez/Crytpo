@@ -6,6 +6,7 @@ from . import OperationModes as op
 from .HillCipher import HillCipher as hc
 from .Tools import mod, file_format, get_colors, save_image, create_zip
 from zipfile import ZipFile
+from django.core.servers.basehttp import FileWrapper
 import tempfile
 import json, os
 
@@ -117,7 +118,9 @@ def modes_operation_encrypt(request):
             elif it is 5:
                 """ >>> CREATE ZIPFILE """
                 zip_path = create_zip(paths, _file.name.split('.')[0], ext)
+                print 'zip_path: ', zip_path
                 res['zip_id'] = zip_path.split('/')[-1].split('.zip')[0]
+                print res['zip_id']
                 res['total_imgs'] -= 1
                 res['status_txt'] = 'Completed!! :) [%s]' % res['zip_id']
             
@@ -141,6 +144,7 @@ def modes_operation_decrypt(request):
     }
 
     def __process_decrypt():
+        print "entro a decrypt"
         hill_instance = hc(key=KEY, ikey= KEY_INVERSE)
         init_vector = [133,10,39]
         op_mode = (request.POST['decryption_mode']).lower()
@@ -189,35 +193,38 @@ def modes_operation_decrypt(request):
         for i, color in enumerate(e_colors):
             e_colors[i] = mod(color, 256)
 
-        img_path = save_image(e_colors, size)        
+        img_path = save_image(e_colors, size)
+        print img_path        
         res['zip_id'] = img_path.split('/')[-1]
         res['status_txt'] = 'Completed!!...'
         response = json.dumps(res)
         yield 'JSON!_!SEP' + str(response)
 
-
+    print request.FILES, request.POST
     if 'original_img' in request.FILES and 'decryption_mode' in request.POST:
         return StreamingHttpResponse(__process_decrypt())
     else:
         return HttpResponse(json.dumps(res), content_type='plain/text')
 
 def get_zip(request, temp_zip):
-    zip_path = "/tmp/%s.zip" % temp_zip
+    zip_path = "%s/%s.zip" % (tempfile.gettempdir(),temp_zip)
     try:
         zip_file = open(zip_path)
     except:
         raise Http404
+
     fw = FileWrapper(zip_file)
     os.remove(zip_path)
     response = HttpResponse(fw, content_type='application/zip')
+
+
     response['Content-Disposition'] = 'attachment; filename="%s_encrypted.zip"' %  temp_zip
 
     return response
     
 
 def get_img(request, temp_img):
-    img_path = "/tmp/%s" % temp_img
-    print img_path
+    img_path = "/%s/%s" % (tempfile.gettempdir(),temp_img)
     try:
         img_file = open(img_path)
     except:

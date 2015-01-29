@@ -68,15 +68,14 @@ $(function(){
 			success: function(res){
 				res = chunked_response(res);
 				$('.response_status').text(data.status_txt)
-
 				if(res.zip_id){
 					iframe = $('#download_iframe')[0]
 					var _type = btn.data('type');
 
 					if(_type === 'decrypt')
-						iframe.src = '/modes-of-operation/get_img/'+res.zip_id+'/'
+						iframe.src = '/get_img/'+res.zip_id+'/'
 					else
-						iframe.src = '/modes-of-operation/get_zip/'+res.zip_id+'/'
+						iframe.src = '/get_zip/'+res.zip_id+'/'
 
 				}
 			},
@@ -103,11 +102,12 @@ $(function(){
 		if( _type === 'decrypt'){
 			var opmode = prompt('Set operation mode to decrypt. \n Options are: ECB,CBC,CFB,OFB, CTR: ');
 			if (opmode === null){
-				alert('Operation mode not supported ;)');
+				alert('Operation mode not supported');
 				return false;
 			}
 
 			$('input[name=decryption_mode]').val(opmode)
+			console.log(form[0])
 			sendForm($elf, form[0])
 		}else{
 			//form.attr('action', $elf.data('action'))
@@ -118,7 +118,6 @@ $(function(){
 	})
 
 	$('.file_cvr').on('click', function(e){
-		console.log("Entro a file")
 		e.preventDefault();
 		var $elf = $(this);
 		var file_input = $($elf.data('input'))
