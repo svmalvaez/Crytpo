@@ -1,0 +1,70 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'img/fav.png' %}">
+
+    <title>Practices Cryptography</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/offcanvas.css' %}" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Cryptography</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li class="active"><a href="{% url 'practices' %}">Practices</a></li>
+            <li><a href="#">Docs</a></li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
+
+    <div class="container">
+      <div class="row">
+        
+        <section class="col-lg-6">
+          <h2>Register</h2>
+          <form id="form_user">
+          <label for="username">User Name</label>
+          <input class="form-control" type ="text" id="username" name="username" placeholder="My name is ..."/>
+          <label for="username">Define your Private Key</label>
+          <input class="form-control" type = "text" id="priv_key" name="priv_key" placeholder="Free for ALL"/>
+          <label for="username">Define your Public Key</label>
+          <input class="form-control" type = "text" id="pub_key"  name="pub_key" placeholder="TOP SECRET"/>
+          <button class="btn btn-primary" id="send">Enviar</button>
+        </form>
+        </section>
+        <section class = "col-lg-6">
+          <h2>Users</h2>
+        </section>
+      </div>
+    </div>
+  </body>
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <script src="{% static 'js/offcanvas.js' %}"></script>
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="{% static 'js/rsa.js' %}"></script>
+  </html>

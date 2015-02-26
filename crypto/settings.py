@@ -38,7 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'DES',
     'Hill',
-    'numpy'
+    'numpy',
+    'DiffHellmen',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from DES import views as dviews
 from Hill import views as hviews
+from DiffHellmen import views as rviews
 
 urlpatterns = patterns('',
     # Examples:
@@ -18,4 +19,5 @@ urlpatterns = patterns('',
     url(r'^get_img/(?P<temp_img>.{0,15})/$', hviews.get_img, name='opmodes-get_img'),
     url(r'^decrypt/$', hviews.modes_operation_decrypt, name='opmodes-decrypt'),
     url(r'^encrypt/$', hviews.modes_operation_encrypt, name='opmodes-encrypt'),
+    url(r'^rsa/$', rviews.rsa, name='rsa-process'),
 )
