@@ -45,21 +45,49 @@
         
         <section class="col-lg-6">
           <h2>Register</h2>
-          <form id="form_user">
-          <label for="username">User Name</label>
-          <input class="form-control" type ="text" id="username" name="username" placeholder="My name is ..."/>
-          <label for="username">Define your Private Key</label>
+          <div class="form-group">
+            <label for="username">User Name</label>
+            <input class="form-control" type ="text" id="username" name="username" placeholder="My name is ..."/>
+          </div>
+            <div class="form-group">
+            <label for="username">Define your Private Key</label>
           <input class="form-control" type = "text" id="priv_key" name="priv_key" placeholder="Free for ALL"/>
-          <label for="username">Define your Public Key</label>
-          <input class="form-control" type = "text" id="pub_key"  name="pub_key" placeholder="TOP SECRET"/>
-          <button class="btn btn-primary" id="send">Enviar</button>
-        </form>
+          </div>
+          <div class="form-group">
+            <label for="username">Define your Public Key</label>
+            <input class="form-control" type = "text" id="pub_key"  name="pub_key" placeholder="TOP SECRET"/>
+          </div>
+            <button class="btn btn-primary" id="send">Enviar</button>
         </section>
+
         <section class = "col-lg-6">
           <h2>Users</h2>
+          <div class="list-group">
+          </div>
         </section>
       </div>
     </div>
+
+    <div class="modal fade" id="conversation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Safe Conversation</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="message">Message</label>
+          <input class="form-control" type="text" id="message" placeholder="Your message here ...it will be save"/>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="des-submit">Send Message</button>
+      </div>
+    </div>
+  </div>
+</div>
   </body>
   <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
