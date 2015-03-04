@@ -50,14 +50,10 @@
             <input class="form-control" type ="text" id="username" name="username" placeholder="My name is ..."/>
           </div>
             <div class="form-group">
-            <label for="username">Define your Private Key</label>
-          <input class="form-control" type = "text" id="priv_key" name="priv_key" placeholder="Free for ALL"/>
+            <label for="passphrase">Define your Private Key</label>
+            <input class="form-control" tyoe="text" id="passphrase" />
           </div>
-          <div class="form-group">
-            <label for="username">Define your Public Key</label>
-            <input class="form-control" type = "text" id="pub_key"  name="pub_key" placeholder="TOP SECRET"/>
-          </div>
-            <button class="btn btn-primary" id="send">Enviar</button>
+            <button class="btn btn-send" id="send">Enviar</button>
         </section>
 
         <section class = "col-lg-6">
@@ -68,7 +64,7 @@
       </div>
     </div>
 
-  <div class="modal fade" id="conversation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="conversation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-key="">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -91,7 +87,7 @@
   </body>
   <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/jsrsasign-4.7.0-all-min.js' %}"></script>
+    <script src="{% static 'js/cryptico.min.js' %}"></script>
     <script src="{% static 'js/offcanvas.js' %}"></script>
     <script src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script src="{% static 'js/rsa.js' %}"></script>
